@@ -64,6 +64,42 @@ module.exports = {
             }
             res.status(404).json({ message: "Could not find thought to delete"})
         })
-        .catch((err => res.}))
+        .catch((err) => res.status(500).json(err));
+    },
+    //create a reaction
+    createReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.id },
+            { $addToSet: { reactions: req.body }},
+            {
+                runValidators:true,
+                new: true
+            }
+        )
+        .then((data) => {
+            if(data) {
+                res.json(data)
+            }
+            res.status(404).json({ message: "No thought found "});
+        })
+        .catch((err) => res.status(500).json(err));
+    },
+    //delete reaction
+    deleteReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.id },
+            { $pull: { reactions: { reactionId: req.params.id }}},
+            {
+                runValidators:true,
+                new:true
+            }
+        )
+        .then((data) => {
+            if(data) {
+                res.json(data)
+            }
+            res.status(404).json({ message: " no thought found "});
+        })
+        .catch((err) => res.status(500).json(err));
     }
-}
+};

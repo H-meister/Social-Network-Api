@@ -13,16 +13,16 @@ const {
 
 // GET route and POST route 
 router.route('/')
-.get(getUser)
-.post(createUser);
+    .get(getUser)
+    .post(createUser);
 //GET POST DELETE by id
 router.route('/:id')
-.get(getSingleUser)
-.put(updateUser)
-.delete(deleteUser);
+    .get(getSingleUser)
+    .put(updateUser)
+    .delete(deleteUser);
 //POST DELETE friend routes by id
 router.route(':id/friends/:id')
-.post(addFriend)
-.delete(deleteFriend);
+    .post(addFriend)
+    .delete(deleteFriend);
 
 module.exports = router;

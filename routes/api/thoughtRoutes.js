@@ -1,5 +1,5 @@
 const router = require('express').Router();
-//get everthign from the conroller
+//get everthig from the conroller
 const {
     getThought,
     getSingleThought,
